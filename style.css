@@ -39,5 +39,14 @@ label i{
     border-bottom-right-radius:1.5rem;
     cursor: pointer;
    }
-  
+   .pokemon-card{
+    width: 50rem;
+   }
+  .pokemon-card img {
+   height: 12rem;
+   background-color: ;
+  }
+  .pokemon-card h2{
+text-align: center;
+  }
 
