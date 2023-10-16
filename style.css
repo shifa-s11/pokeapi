@@ -2,6 +2,8 @@
 {
     margin: 0;
     padding: 0;
+}
+body{
     background-color: #F07540;
 }
 
@@ -39,14 +41,60 @@ label i{
     border-bottom-right-radius:1.5rem;
     cursor: pointer;
    }
-   .pokemon-card{
-    width: 50rem;
+   .content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+     justify-content: center; 
    }
-  .pokemon-card img {
-   height: 12rem;
-   background-color: ;
+   @media(max-width:750px){
+    .content{
+       display: block;
+       margin: 2rem 12rem;
+    }
+   }
+
+   
+   .pokemon-card1{
+    width: 13rem;
+    /* background-color: #FDDB29; */
+    background: linear-gradient(to right,rgb(158, 65, 31),rgb(220, 161, 21));
+    margin:3rem 2rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    
+   }
+  .pokemon-card1 img {
+  
+   height: 9rem;
+   width: 100%;
+   background: linear-gradient(to right,rgb(251, 200, 15),rgb(255, 55, 0)); 
+   border-top-right-radius: 2rem;
+   border-top-left-radius: 2rem;
   }
-  .pokemon-card h2{
+  #id{
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+#type,#ability{
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 400rem;
+}
+  .pokemon-card1 h2{
 text-align: center;
+font-family: monospace;
+font-weight: 800;
+font-size: 1.7rem;
+margin: 1.3rem 0;
   }
 
+  #stats,#height,#weight{
+    display: none;
+  }
+.pokemon-card1:hover{
+    transform: rotateY(180deg);
+}
+.pokem

@@ -6,8 +6,6 @@ console.log(pokepedia);
     return response.json()
  }))
  .then((data) => {
-    // console.log(data);
-   
     const pokemon = {
         name : data.name,
         id : data.id,
@@ -21,51 +19,50 @@ console.log(pokepedia);
     };
    console.log(pokemon)
 
-const pokemonCard = document.createElement("div");
-pokemonCard.classList.add("pokemon-card");
+const pokemonCard1 = document.createElement("div");
+pokemonCard1.classList.add("pokemon-card1");
 
 const image = document.createElement("img");
 image.src = pokemon.image;
+image.id='image';
 
 const name = document.createElement("h2");
 name.textContent = pokemon.name;
-
+name.id='name';
 const id = document.createElement("p");
-id.textContent = `ID: ${pokemon.id}`;
-
+id.textContent = `# ${pokemon.id}`;
+id.id = 'id';
 const type = document.createElement("p");
 type.textContent = `Type: ${pokemon.type}`;
-
-const stats = document.createElement("p");
-stats.textContent = `Stats: ${pokemon.stats.join('\n')}`;
-
-const height = document.createElement("p");
-height.textContent = `Height: ${pokemon.height} decimetres`;
-
-const weight = document.createElement("p");
-weight.textContent = `Weight: ${pokemon.weight} hectograms`;
-
+type.id = 'type';
 const ability = document.createElement("p");
 ability.textContent = `Abilities: ${pokemon.ability.join(',')}`;
+ability.id='ability';
+const pokemonCard2 = document.createElement("div");
+pokemonCard2.classList.add("pokemon-card2");
+const stats = document.createElement("p");
+stats.textContent = `Stats: ${pokemon.stats.join('\n')}`;
+stats.id = 'stats';
+const height = document.createElement("p");
+height.textContent = `Height: ${pokemon.height} decimetres`;
+height.id = 'height';
+const weight = document.createElement("p");
+weight.textContent = `Weight: ${pokemon.weight} hectograms`;
+weight.id ='weight';
 
 
-pokemonCard.appendChild(image);
-pokemonCard.appendChild(name);
-pokemonCard.appendChild(id);
-pokemonCard.appendChild(type);
-pokemonCard.appendChild(stats);
-pokemonCard.appendChild(height);
-pokemonCard.appendChild(weight);
-pokemonCard.appendChild(ability);
-
-pokepedia.appendChild(pokemonCard);
+pokemonCard1.appendChild(image);
+pokemonCard1.appendChild(id);
+pokemonCard1.appendChild(name);
+pokemonCard1.appendChild(type);
+pokemonCard2.appendChild(stats);
+pokemonCard2.appendChild(height);
+pokemonCard2.appendChild(weight);
+pokemonCard1.appendChild(ability);
+pokepedia.appendChild(pokemonCard2);
+pokepedia.appendChild(pokemonCard1);
 });
 }
-
-
-
-
-
 
 
 
