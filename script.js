@@ -1,5 +1,6 @@
 const pokepedia = document.getElementById("content");
 const search = document.getElementById("search");
+
 console.log(pokepedia);
 
  for(let i =1;i<=150;i++)
@@ -99,3 +100,47 @@ search
  window.addEventListener("load",function(){
    load.style.display = "none"
  })
+//  download
+ const dowbtn = document.getElementById("download");
+ function Data() {
+   const pokeData = [];
+ 
+   const Cards = document.querySelectorAll(".poke");
+   Cards.forEach((card) => {
+     const name = card.querySelector("#name").textContent;
+     const id = card.querySelector("#id").textContent;
+     const type = card.querySelector("#type").textContent;
+     const ability = card.querySelector("#ability").textContent;
+     const stats = card.querySelector("#stats").textContent;
+     const height = card.querySelector("#height").textContent;
+     const weight = card.querySelector("#weight").textContent;
+ 
+     const dd = `
+ Name: ${name}
+ ID: ${id}
+ Type: ${type}
+ Abilities: ${ability}
+ Stats: ${stats}
+ Height: ${height}
+ Weight: ${weight}
+ `;
+ 
+     pokeData.push(dd);
+   });
+ 
+   return pokeData.join("\n\n");
+ }
+ function download() {
+   const data = Data();
+   const blob =  new Blob([data], { type: "text/plain" });
+   const url = window.URL.createObjectURL(blob);
+   const a = document.createElement("a");
+   a.style.display = "none";
+   a.href = url;
+   a.download = "pokemon_data.txt";
+   document.body.appendChild(a);
+   a.click();
+   window.URL.revokeObjectURL(url);
+ }
+ 
+ dowbtn.addEventListener("click", download);

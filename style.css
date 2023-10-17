@@ -12,7 +12,7 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     
 }
 header h1{
@@ -55,12 +55,7 @@ label i{
    #pokemon-card1:hover{
     transform: rotateY(180deg);
    }
-   @media(max-width:750px){
-    .content{
-       display: block;
-       margin: 2rem 14rem;
-    }
-   }
+  
 
    
    #pokemon-card1{
@@ -140,6 +135,31 @@ font-size: 1.7rem;
   font-size: 1.2rem;
   font-weight: 600;
 }
+@media(max-width:700px){
+  header img{
+   width:30rem ;
+  }}
+  @media(max-width:530px){
+    form{
+      width: 20rem;
+    }
+    form input{
+      padding-right: 7rem;
+    }
+    header img{
+      width:22rem ;
+     }}
+     @media(max-width:350px){
+      form{
+        width: 12rem;
+      }
+      form input{
+        padding-right:2rem;
+      }
+      header img{
+        width:15rem ;
+       }}
+
 /* loader */
 #loader{
   height: 100%;
@@ -162,6 +182,27 @@ animation: load 3s linear 0s infinite;
   0%{transform: rotate(0deg);}
   100%{transform:rotate(360deg) ;}
 }
+
 .pagination{
   height: 200px;
 }
+/* download */
+#download{
+  height: 3rem;
+  width: 8rem;
+  background-color: rgb(255 204 1);
+  border: solid  rgb(54 95 172) 4px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  box-shadow:2px 2px 2px rgb(54 95 172) ;
+  margin:2rem ;
+  border-radius:5rem;
+}
+.button{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
