@@ -1,7 +1,8 @@
 const pokepedia = document.getElementById("content");
 const search = document.getElementById("search");
 console.log(pokepedia);
- for(let i =1;i<=150;i++){
+
+ for(let i =1;i<=150;i++)
  (fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
  .then((response) => {
     return response.json()
@@ -20,8 +21,12 @@ console.log(pokepedia);
     };
    console.log(pokemon)
 
+   const poke = document.createElement("div");
+    poke.classList.add("poke");
+    poke.id = 'poke';
+    const poke1 = document.getElementById("poke")
 const pokemonCard1 = document.createElement("div");
-pokemonCard1.classList.add("pokemon-card1");
+pokemonCard1.id= 'pokemon-card1'
 
 const image = document.createElement("img");
 image.src = pokemon.image;
@@ -39,6 +44,8 @@ type.id = 'type';
 const ability = document.createElement("p");
 ability.textContent = `Abilities: ${pokemon.ability.join(',')}`;
 ability.id='ability';
+const pokemonCard2 = document.createElement("div")
+pokemonCard2.id = 'pokemon-card2'
   const stats = document.createElement('p');
    stats.textContent = `Stats: ${pokemon.stats.join(" \n ")}`;
   stats.id = 'stats';
@@ -54,24 +61,41 @@ pokemonCard1.appendChild(image);
 pokemonCard1.appendChild(id);
 pokemonCard1.appendChild(name);
 pokemonCard1.appendChild(type);
-pokemonCard1.appendChild(stats);
-pokemonCard1.appendChild(height);
-pokemonCard1.appendChild(weight);
+pokemonCard2.appendChild(stats);
+pokemonCard2.appendChild(height);
+pokemonCard2.appendChild(weight);
 pokemonCard1.appendChild(ability);
-pokepedia.appendChild(pokemonCard1);
-});
-}
-search.addEventListener("input", (event) => {
-   const Term = event.target.value.toLowerCase();
-   const pokemonCards = document.querySelectorAll(".pokemon-card1");
-   pokemonCards.forEach((card) => {
-     const pokemonName = card.querySelector("#name").textContent.toLowerCase();
-     if (pokemonName.includes(Term)) {
-       card.style.display = "block";
-     } else {
-       card.style.display = "none";
+pokepedia.appendChild(poke);
+poke.appendChild(pokemonCard1);
+poke.appendChild(pokemonCard2);
+  
+ pokemonCard1.addEventListener("mouseenter", function () {
+   pokemonCard1.style.visibility="hidden"; 
+     pokemonCard2.style.visibility = "visible";
+ });
+
+  pokemonCard1.addEventListener("mouseleave", function () {
+  setTimeout(function (){
+  pokemonCard2.style.visibility="hidden";
+  pokemonCard1.style.visibility = "visible";
+},1000);
+ });
+  });
+search
+ search.addEventListener("input", (event) => {
+    const Term = event.target.value.toLowerCase();
+  const pokemonCards = document.querySelectorAll(".poke");
+  pokemonCards.forEach((card) => {
+     const pokemonName = card.querySelector("#name").textContent.toLowerCase();  
+        if (pokemonName.includes(Term)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
      }
    });
  });
-
-
+ //loader
+ const load = document.getElementById("loader");
+ window.addEventListener("load",function(){
+   load.style.display = "none"
+ })

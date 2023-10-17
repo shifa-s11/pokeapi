@@ -48,15 +48,11 @@ label i{
      justify-content: center; 
      position: relative;
    }
-   .card{
-    height: 100%;
-    width: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
+  
+   .poke{
     display: flex;
-    flex-direction: column;
-   }
-   .pokemon-card1:hover{
+   } 
+   #pokemon-card1:hover{
     transform: rotateY(180deg);
    }
    @media(max-width:750px){
@@ -67,7 +63,7 @@ label i{
    }
 
    
-   .pokemon-card1{
+   #pokemon-card1{
     width: 13rem;
     /* background-color: #FDDB29; */
     background: linear-gradient(to right,rgb(158, 65, 31),rgb(220, 161, 21));
@@ -76,10 +72,11 @@ label i{
     display: flex;
     flex-direction: column;
     height:21.5rem;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
+  transform: rotateY('180deg');
+  transition: transform 0.5sec;
+   backface-visibility: hidden;
    }
-  .pokemon-card1 img {
+  #pokemon-card1 img {
   
    height: 9rem;
    width: 100%;
@@ -87,10 +84,6 @@ label i{
    border-top-right-radius: 2rem;
    border-top-left-radius: 2rem;
   }
-  .pokemon-card1:hover{
-    transform: rotateY('180deg');
-  }
-   
   
   #id{
     font-size: 1.5rem;
@@ -109,16 +102,17 @@ label i{
   width: 80%;
  margin-left: 0.8rem;
 }
-  .pokemon-card1 h2{
+  #pokemon-card1 h2{
 text-align: center;
 font-family: monospace;
 font-weight: 800;
 font-size: 1.7rem;
+
   }
 
 
 
-.pokemon-card2 {
+#pokemon-card2 {
   width: 13rem;
   margin:3rem 2rem;
   border-radius: 2rem;
@@ -126,26 +120,48 @@ font-size: 1.7rem;
   flex-direction: column;
   height:21.5rem;
   background: linear-gradient(to right,rgb(158, 65, 31),rgb(220, 161, 21));
-  position:absolute;
+  position: absolute;
+  visibility: hidden;
   backface-visibility: hidden;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  top: 0;
-  left:0;
-  visibility: hidden;
-  transform-style: preserve-3d;
-  transform: rotateY('-180deg');
-}
-.pokemon-card1:hover + .pokemon-card2{
-  visibility: visible;
-  transform: rotateY('0deg');
+
 }
 #stats{
-  width:80% ;
+  width:73% ;
   padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+ 
  
 }
 #height,#weight{
   font-size: 1.2rem;
   font-weight: 600;
+}
+/* loader */
+#loader{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+#loaderimg img{
+height:8rem;
+width: 8rem;
+animation: load 3s linear 0s infinite;
+}
+
+@keyframes load{
+  0%{transform: rotate(0deg);}
+  100%{transform:rotate(360deg) ;}
+}
+.pagination{
+  height: 200px;
 }
