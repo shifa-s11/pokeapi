@@ -52,25 +52,21 @@ label i{
    .poke{
     display: flex;
    } 
-   #pokemon-card1:hover{
-    transform: rotateY(180deg);
+   :root{
+    --bg : linear-gradient(to right,rgb(251, 200, 15),rgb(255, 55, 0));
    }
-  
-
-   
    #pokemon-card1{
     width: 13rem;
-    /* background-color: #FDDB29; */
-    background: linear-gradient(to right,rgb(158, 65, 31),rgb(220, 161, 21));
+    background:  linear-gradient(to right,rgb(158, 65, 31),rgb(220, 161, 21));
     margin:3rem 2rem;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
     height:21.5rem;
-  transform: rotateY('180deg');
-  transition: transform 0.5sec;
    backface-visibility: hidden;
+   transition: opacity 0.4s ease;
    }
+   
   #pokemon-card1 img {
   
    height: 9rem;
@@ -89,6 +85,7 @@ label i{
   font-size: 1.2rem;
   font-weight: 600;
   margin-left: 0.8rem;
+  width: 80%;
 }
 #ability{
   font-size: 1.2rem;
@@ -138,7 +135,11 @@ font-size: 1.7rem;
 @media(max-width:700px){
   header img{
    width:30rem ;
-  }}
+  } 
+  #ability,#type,#pokemon-card2{
+    font-size: 1rem;
+  }
+}
   @media(max-width:530px){
     form{
       width: 20rem;

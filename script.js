@@ -1,9 +1,7 @@
 const pokepedia = document.getElementById("content");
 const search = document.getElementById("search");
-
 console.log(pokepedia);
-
- for(let i =1;i<=150;i++)
+   for(let i =1;i<=150;i++){
  (fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
  .then((response) => {
     return response.json()
@@ -69,20 +67,25 @@ pokemonCard1.appendChild(ability);
 pokepedia.appendChild(poke);
 poke.appendChild(pokemonCard1);
 poke.appendChild(pokemonCard2);
-  
- pokemonCard1.addEventListener("mouseenter", function () {
-   pokemonCard1.style.visibility="hidden"; 
-     pokemonCard2.style.visibility = "visible";
+  // events
+ pokemonCard1.addEventListener("mouseenter", function () { 
+  pokemonCard1.style.visibility="hidden"; 
+  pokemonCard2.style.visibility = "visible";
  });
-
+pokemonCard1.addEventListener("click",function(){
+  setTimeout(function (){
+    pokemonCard2.style.visibility = "visible"
+  pokemonCard1.style.visibility = "hidden";
+ ;},1000
+)})
   pokemonCard1.addEventListener("mouseleave", function () {
   setTimeout(function (){
   pokemonCard2.style.visibility="hidden";
   pokemonCard1.style.visibility = "visible";
 },1000);
- });
-  });
-search
+});
+});}
+
  search.addEventListener("input", (event) => {
     const Term = event.target.value.toLowerCase();
   const pokemonCards = document.querySelectorAll(".poke");
@@ -94,7 +97,7 @@ search
         card.style.display = "none";
      }
    });
- });
+ })
  //loader
  const load = document.getElementById("loader");
  window.addEventListener("load",function(){
