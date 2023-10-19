@@ -20,41 +20,18 @@ console.log(pokepedia);
       
     };
    console.log(pokemon)
-
-   const poke = document.createElement("div");
-    poke.classList.add("poke");
-    poke.id = 'poke';
-    const poke1 = document.getElementById("poke")
-const pokemonCard1 = document.createElement("div");
-pokemonCard1.id= 'pokemon-card1'
-
-const image = document.createElement("img");
-image.src = pokemon.image;
-image.id='image';
-
-const name = document.createElement("h2");
-name.textContent = pokemon.name;
-name.id='name';
-const id = document.createElement("p");
-id.textContent = `# ${pokemon.id}`;
-id.id = 'id';
-const type = document.createElement("p");
-type.textContent = `Type: ${pokemon.type}`;
-type.id = 'type';
-const ability = document.createElement("p");
-ability.textContent = `Abilities: ${pokemon.ability.join(',')}`;
-ability.id='ability';
-const pokemonCard2 = document.createElement("div")
-pokemonCard2.id = 'pokemon-card2'
-  const stats = document.createElement('p');
-   stats.textContent = `Stats: ${pokemon.stats.join(" \n ")}`;
-  stats.id = 'stats';
-const height = document.createElement("p");
-height.textContent = `Height: ${pokemon.height} decimeters`;
-height.id = 'height';
-const weight = document.createElement("p");
-weight.textContent = `Weight: ${pokemon.weight} hectograms`;
-weight.id ='weight';
+   const poke = Object.assign(document.createElement("div"), { className: "poke", id: "poke" });
+    // const poke1 = document.getElementById("poke")
+const pokemonCard1 = Object.assign(document.createElement("div"), { id: "pokemon-card1" });
+const image = Object.assign(document.createElement("img"), { src: pokemon.image, id: "image" });
+const name = Object.assign(document.createElement("h2"), { textContent: pokemon.name, id: "name" });
+const id = Object.assign(document.createElement("p"), { textContent: `# ${pokemon.id}`, id: "id" });
+const type = Object.assign(document.createElement("p"), { textContent: `Type: ${pokemon.type}`, id: "type" });
+const ability = Object.assign(document.createElement("p"), { textContent: `Abilities: ${pokemon.ability.join(',')}`, id: "ability" });
+const pokemonCard2 = Object.assign(document.createElement("div"), { id: "pokemon-card2" });
+const stats = Object.assign(document.createElement("p"), { textContent: `Stats: ${pokemon.stats.join(" \n ")}`, id: "stats" });
+const height = Object.assign(document.createElement("p"), { textContent: `Height: ${pokemon.height} decimeters`, id: "height" });
+const weight = Object.assign(document.createElement("p"), { textContent: `Weight: ${pokemon.weight} hectograms`, id: "weight" });
 
 
 pokemonCard1.appendChild(image);
@@ -96,7 +73,7 @@ pokemonCard1.addEventListener("click",function(){
      const pokemonId = card.querySelector("#id").textContent;
      const pokemonAbilities = card.querySelector("#ability").textContent.toLowerCase();
      
-        if (pokemonName.includes(Term)||pokemonAbilities.includes(Term)||pokemonId===Term) {
+        if (pokemonName.startsWith(Term)||pokemonAbilities==(Term)||pokemonId===Term) {
         card.style.display = "flex";
       } else {
         card.style.display = "none";
@@ -181,5 +158,3 @@ dowbtn.addEventListener("change", function () {
        download("json");
    }
 });
-
-
