@@ -1,6 +1,7 @@
 const pokepedia = document.getElementById("content");
 const search = document.getElementById("search");
 console.log(pokepedia);
+const cards = [];
    for(let i =1;i<=150;i++){
  (fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
  .then((response) => {
@@ -67,6 +68,7 @@ pokemonCard1.appendChild(ability);
 pokepedia.appendChild(poke);
 poke.appendChild(pokemonCard1);
 poke.appendChild(pokemonCard2);
+cards.push({ id: pokemon.id, card: poke });
   // events
  pokemonCard1.addEventListener("mouseenter", function () { 
   pokemonCard1.style.visibility="hidden"; 
@@ -76,13 +78,13 @@ pokemonCard1.addEventListener("click",function(){
   setTimeout(function (){
     pokemonCard2.style.visibility = "visible"
   pokemonCard1.style.visibility = "hidden";
- ;},3000
+ ;},2000
 )})
   pokemonCard1.addEventListener("mouseleave", function () {
   setTimeout(function (){
   pokemonCard2.style.visibility="hidden";
   pokemonCard1.style.visibility = "visible";
-},3000);
+},2000);
 });
 });}
 //search
@@ -106,6 +108,27 @@ pokemonCard1.addEventListener("click",function(){
  window.addEventListener("load",function(){
    load.style.display = "none"
  })
+//  sort
+ function sortCards() {
+  cards.sort((a, b) => a.id - b.id);
+  while (pokepedia.firstChild) {
+    pokepedia.removeChild(pokepedia.firstChild);
+}  cards.forEach((cardData) => {
+  pokepedia.appendChild(cardData.card);
+});
+}
+const sortButton = document.getElementById("sort-button");
+const sortSelect = document.getElementById("sort-select");
+
+sortButton.addEventListener("click", sortCards);
+
+sortSelect.addEventListener("change", function () {
+  const sel = sortSelect.value;
+  if (sel === "ascending") {
+    sortCards();
+  }
+});
+
 //download
 const dowbtn = document.getElementById("download");
 

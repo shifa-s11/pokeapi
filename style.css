@@ -189,7 +189,7 @@ animation: load 3s linear 0s infinite;
   height: 200px;
 }
 /* download */
-#download{
+.button{
   height: 3rem;
   width: 8rem;
   background-color: rgb(255 204 1);
@@ -202,9 +202,15 @@ animation: load 3s linear 0s infinite;
   margin:2rem ;
   border-radius:5rem;
 }
-.button{
+#download{
+  border: none;
+  background-color: rgb(255 204 1);
+  margin-left: 1.5rem;
+  width: 1rem;
+}
+ .dow{
   display: flex;
   text-align: center;
   justify-content: center;
-}
+} 
 

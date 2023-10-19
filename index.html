@@ -26,14 +26,21 @@
         <label for="search"> <i class="fa-solid fa-magnifying-glass"></i></label>
     </form>
     </header>
-    <div class="button">
-      
+    <button id="sort-button">Sort :
+      <select name="sort-select" id="" value="sort">
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
+    </button>
+    <div class="dow">
+    <button class="button" id="button">Download
     <select name="download" id="download">
-      
-      <option value="txt" id="txt">Download</option>
+      <option value="txt" id="txt">txt</option>
       <option value="csv" id="csv">CSV</option>
       <option value="json" id="json">Json</option>
     </select>
+  </button>
+</div>
     </div>
     <div id="content" class="content"></div>
     
