@@ -76,23 +76,26 @@ pokemonCard1.addEventListener("click",function(){
   setTimeout(function (){
     pokemonCard2.style.visibility = "visible"
   pokemonCard1.style.visibility = "hidden";
- ;},1000
+ ;},3000
 )})
   pokemonCard1.addEventListener("mouseleave", function () {
   setTimeout(function (){
   pokemonCard2.style.visibility="hidden";
   pokemonCard1.style.visibility = "visible";
-},1000);
+},3000);
 });
 });}
-
+//search
  search.addEventListener("input", (event) => {
     const Term = event.target.value.toLowerCase();
   const pokemonCards = document.querySelectorAll(".poke");
   pokemonCards.forEach((card) => {
-     const pokemonName = card.querySelector("#name").textContent.toLowerCase();  
-        if (pokemonName.includes(Term)) {
-        card.style.display = "block";
+     const pokemonName = card.querySelector("#name").textContent.toLowerCase(); 
+     const pokemonId = card.querySelector("#id").textContent;
+     const pokemonAbilities = card.querySelector("#ability").textContent.toLowerCase();
+     
+        if (pokemonName.includes(Term)||pokemonAbilities.includes(Term)||pokemonId===Term) {
+        card.style.display = "flex";
       } else {
         card.style.display = "none";
      }
@@ -103,47 +106,85 @@ pokemonCard1.addEventListener("click",function(){
  window.addEventListener("load",function(){
    load.style.display = "none"
  })
-//  download
- const dowbtn = document.getElementById("download");
- function Data() {
-   const pokeData = [];
- 
-   const Cards = document.querySelectorAll(".poke");
-   Cards.forEach((card) => {
-     const name = card.querySelector("#name").textContent;
-     const id = card.querySelector("#id").textContent;
-     const type = card.querySelector("#type").textContent;
-     const ability = card.querySelector("#ability").textContent;
-     const stats = card.querySelector("#stats").textContent;
-     const height = card.querySelector("#height").textContent;
-     const weight = card.querySelector("#weight").textContent;
- 
-     const dd = `
- Name: ${name}
- ID: ${id}
- Type: ${type}
- Abilities: ${ability}
- Stats: ${stats}
- Height: ${height}
- Weight: ${weight}
- `;
- 
-     pokeData.push(dd);
-   });
- 
-   return pokeData.join("\n\n");
- }
- function download() {
-   const data = Data();
-   const blob =  new Blob([data], { type: "text/plain" });
-   const url = window.URL.createObjectURL(blob);
-   const a = document.createElement("a");
-   a.style.display = "none";
-   a.href = url;
-   a.download = "pokemon_data.txt";
-   document.body.appendChild(a);
-   a.click();
-   window.URL.revokeObjectURL(url);
- }
- 
- dowbtn.addEventListener("click", download);
+//download
+const dowbtn = document.getElementById("download");
+
+function Data() {
+    const cards = document.querySelectorAll(".poke");
+    const pokeData = [];
+    cards.forEach((card) => {
+        const name = card.querySelector("#name").textContent;
+        const id = card.querySelector("#id").textContent;
+        const type = card.querySelector("#type").textContent;
+        const ability = card.querySelector("#ability").textContent;
+        const stats = card.querySelector("#stats").textContent;
+        const height = card.querySelector("#height").textContent;
+        const weight = card.querySelector("#weight").textContent;
+
+        const dd = `
+Name: ${name}
+ID: ${id}
+Type: ${type}
+Abilities: ${ability}
+Stats: ${stats}
+Height: ${height}
+Weight: ${weight}
+`;
+        pokeData.push(dd);
+    });
+
+    return pokeData.join("\n\n");
+}
+
+function download(format) {
+    const data = Data();
+    if (format === "txt") {
+        const blob = new Blob([data], { type: "text/plain" });
+        dowfile(blob, "pokemon_data.txt");
+    } else if (format === "csv") {
+        const cards = document.querySelectorAll(".poke");
+        const cardArray = Array.from(cards);
+        const csvData = "Name,ID,Type,Abilities,Stats,Height,Weight\n" +
+            cardArray.map(card =>
+                `${card.querySelector("#name").textContent},${card.querySelector("#id").textContent},${card.querySelector("#type").textContent},${card.querySelector("#ability").textContent},${card.querySelector("#stats").textContent},${card.querySelector("#height").textContent},${card.querySelector("#weight").textContent}`
+            ).join("\n");
+        const blob = new Blob([csvData], { type: "text/csv" });
+        dowfile(blob, "pokemon_data.csv");
+    } else if (format === "json") {
+        const jsonData = JSON.stringify(Data(), null, 2);
+        const blob = new Blob([jsonData], { type: "application/json" });
+        dowfile(blob, "pokemon_data.json");
+    }
+}
+
+function dowfile(blob, filename) {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
+dowbtn.addEventListener("change", function () {
+    const sel = dowbtn.value;
+    if (sel === "txt") {
+        download("txt");
+    } else if (sel === "csv") {
+        download("csv");
+    } else if (sel === "json") {
+        download("json");
+    }
+});
+
+
+
+
+
+
+
+
+
+

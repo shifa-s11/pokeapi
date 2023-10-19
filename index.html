@@ -6,7 +6,10 @@
     <title>PokeApi</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -22,14 +25,22 @@
         <input type="text" name="search" placeholder="Search your pokemon " id="search">
         <label for="search"> <i class="fa-solid fa-magnifying-glass"></i></label>
     </form>
-    </header><div class="button">
-    <button id="download">Download</button></div>
-    <div class="content" id="content">
-    </div> 
-    <div id="pagination">
+    </header>
+    <div class="button">
+      
+    <select name="download" id="download">
+      
+      <option value="txt" id="txt">Download</option>
+      <option value="csv" id="csv">CSV</option>
+      <option value="json" id="json">Json</option>
+    </select>
+    </div>
+    <div id="content" class="content"></div>
+    
+   
       <button id="prev">Prev</button>
       <button id="next">Next</button>
-    </div>
+  
 <script src="script.js"></script>
 </body>
 </html>

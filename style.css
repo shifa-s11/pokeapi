@@ -65,6 +65,8 @@ label i{
     height:21.5rem;
    backface-visibility: hidden;
    transition: opacity 0.4s ease;
+   border: 4px solid  rgb(158, 65, 31);
+   box-shadow: 3px 3px 3px rgb(158, 65, 31);
    }
    
   #pokemon-card1 img {
@@ -96,14 +98,12 @@ label i{
 }
   #pokemon-card1 h2{
 text-align: center;
-font-family: monospace;
+font-family: 'Oswald', sans-serif;
 font-weight: 800;
 font-size: 1.7rem;
+text-transform:uppercase;
 
   }
-
-
-
 #pokemon-card2 {
   width: 13rem;
   margin:3rem 2rem;
@@ -118,10 +118,11 @@ font-size: 1.7rem;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  font-style: italic;
 
 }
 #stats{
-  width:73% ;
+  width:72% ;
   padding: 0.5rem;
   font-size: 1.2rem;
   font-weight: 600;
@@ -136,7 +137,7 @@ font-size: 1.7rem;
   header img{
    width:30rem ;
   } 
-  #ability,#type,#pokemon-card2{
+  #ability,#type,#stats,#weight,#height{
     font-size: 1rem;
   }
 }
