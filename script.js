@@ -84,22 +84,12 @@ const show = (curr) =>{
 
 full(1,20);
 next.addEventListener("click",()=>{
-  if (curr <= pages) {
-    if (curr === pages) {
-      next.disabled = true;
-    } else {
-      next.disabled = false;}
+  if (curr < pages) {
   curr++;
     show(curr);}
  })
 prev.addEventListener("click",() =>{
-  if(curr>=1){
-   
-    if (curr === 1) {
-      prev.disabled = true;
-    } else {
-      prev.disabled = false;
-    }
+  if(curr>1){
     curr--;
     
     show(curr);
