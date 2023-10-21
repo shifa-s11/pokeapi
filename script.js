@@ -212,8 +212,8 @@ function sortname() {
 function sortid() {
   const pokemonCards = Array.from(document.querySelectorAll(".poke"));
   pokemonCards.sort((a, b) => {
-      const idA = parseInt(a.querySelector("#id").textContent.replace("#", ""));
-      const idB = parseInt(b.querySelector("#id").textContent.replace("#", ""));
+      const idA = (a.querySelector("#id").textContent.replace("#", ""));
+      const idB = (b.querySelector("#id").textContent.replace("#", ""));
       return idA - idB;
   });
 
