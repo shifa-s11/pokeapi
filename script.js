@@ -4,6 +4,7 @@ console.log(pokepedia);
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 const pagarr = pokepedia;
+let allpokemon = [];
 function full (initial,last){
    for(let i =initial;i<=last;i++){
  (fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
@@ -22,7 +23,9 @@ function full (initial,last){
      ability : data.abilities.map(ability => ability.ability.name),
       
     };
+    allpokemon.push(pokemon);
    console.log(pokemon)
+ 
    const poke = Object.assign(document.createElement("div"), { className: "poke", id: "poke" });
     // const poke1 = document.getElementById("poke")
 const pokemonCard1 = Object.assign(document.createElement("div"), { id: "pokemon-card1" });
@@ -65,8 +68,9 @@ pokemonCard1.addEventListener("click",function(){
   pokemonCard2.style.visibility="hidden";
   pokemonCard1.style.visibility = "visible";
 },2000);
-});
-});}}
+})
+
+});}}; 
 // pagination
 let curr =1;
 const totpoke = 150;
@@ -105,7 +109,7 @@ prev.addEventListener("click",() =>{
      const pokemonId = card.querySelector("#id").textContent;
      const pokemonAbilities = card.querySelector("#ability").textContent.toLowerCase();
      
-        if (pokemonName.startsWith(Term)||pokemonAbilities==(Term)||pokemonId===Term) {
+        if (pokemonName.startsWith(Term)||pokemonAbilities==(Term)||pokemonId.includes(Term)) {
         card.style.display = "flex";
       } else {
         card.style.display = "none";
@@ -190,11 +194,43 @@ dowbtn.addEventListener("change", function () {
        download("json");
    }
 });
+//  sort 
+const sort = document.getElementById("sort");
+function sortname() {
+  const pokemonCards = Array.from(document.querySelectorAll(".poke"));
+  pokemonCards.sort((a, b) => {
+      const nameA = a.querySelector("#name").textContent.toLowerCase();
+      const nameB = b.querySelector("#name").textContent.toLowerCase();
+      return nameA.localeCompare(nameB);
+  });
 
+  pagarr.innerHTML = ""; 
+  pokemonCards.forEach(card => {
+      pagarr.appendChild(card);
+  });
+}
+function sortid() {
+  const pokemonCards = Array.from(document.querySelectorAll(".poke"));
+  pokemonCards.sort((a, b) => {
+      const idA = parseInt(a.querySelector("#id").textContent.replace("#", ""));
+      const idB = parseInt(b.querySelector("#id").textContent.replace("#", ""));
+      return idA - idB;
+  });
 
-
-
-
+  pagarr.innerHTML = ""; 
+  pokemonCards.forEach(card => {
+      pagarr.appendChild(card);
+  });
+}
+sort.addEventListener("change",function(){
+  const sel =sort.value;
+  if(sel=="id"){
+    sortid()
+  }
+  else if(sel=="name"){
+sortname()
+  }
+})
 
 
 
