@@ -1,8 +1,11 @@
 const pokepedia = document.getElementById("content");
 const search = document.getElementById("search");
 console.log(pokepedia);
-
-   for(let i =1;i<=150;i++){
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+const pagarr = pokepedia;
+function full (initial,last){
+   for(let i =initial;i<=last;i++){
  (fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
  .then((response) => {
     return response.json()
@@ -63,7 +66,46 @@ pokemonCard1.addEventListener("click",function(){
   pokemonCard1.style.visibility = "visible";
 },2000);
 });
-});}
+});}}
+// pagination
+let curr =1;
+const totpoke = 150;
+const pp = 20;
+const pages = Math.ceil(totpoke/pp);
+const show = (curr) =>{
+  pagarr.innerHTML="";
+  let pi = (curr-1)*pp +1;
+  let pl = curr*pp;
+  if (pl > totpoke) {
+    pl = totpoke;
+  }
+  full(pi,pl);
+}
+
+full(1,20);
+next.addEventListener("click",()=>{
+  if (curr <= pages) {
+    if (curr === pages) {
+      next.disabled = true;
+    } else {
+      next.disabled = false;}
+  curr++;
+    show(curr);}
+ })
+prev.addEventListener("click",() =>{
+  if(curr>=1){
+   
+    if (curr === 1) {
+      prev.disabled = true;
+    } else {
+      prev.disabled = false;
+    }
+    curr--;
+    
+    show(curr);
+  }
+})
+
 //search
  search.addEventListener("input", (event) => {
     const Term = event.target.value.toLowerCase();
@@ -158,3 +200,14 @@ dowbtn.addEventListener("change", function () {
        download("json");
    }
 });
+
+
+
+
+
+
+
+
+
+
+
