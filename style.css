@@ -189,7 +189,7 @@ animation: load 3s linear 0s infinite;
   height: 200px;
 }
 /* download */
-.button{
+.button,.sortbutton{
   height: 3rem;
   width: 8rem;
   background-color: rgb(255 204 1);
@@ -202,7 +202,7 @@ animation: load 3s linear 0s infinite;
   margin:2rem ;
   border-radius:5rem;
 }
-#download{
+#download,#sort{
   border: none;
   background-color: rgb(255 204 1);
   margin-left: 1.5rem;
